@@ -7,7 +7,8 @@
 #include <Arduino.h>
 //#include <Control_Surface.h>//an alternate MIDI library, but is not compatible with the STM32 (I originally inteded to use an ESP32)
 #include "configuration.h"
-#include "SendRecTest.h"
+//#include "SendRecTest.h"
+#include "SparkfunTest.h"
 
 unsigned long MillisecondTicks{};
 unsigned long MicrosecondTicks{};
@@ -57,6 +58,7 @@ void loop() {
     }
 
     loopFunc(LiteOn);
+    //loopFunc(LiteOn);
     //Serial.print(LiteOn);
 
 
