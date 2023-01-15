@@ -1,0 +1,129 @@
+/*******************************************************************************
+*                                                                              *
+* JFX Decorator                                                                *
+*                                                                              *
+*******************************************************************************/
+
+.jfx-decorator {
+    -fx-decorator-color: #01579B;
+}
+
+.jfx-decorator .jfx-decorator-buttons-container {
+    -fx-background-color: -fx-decorator-color;
+}
+
+.jfx-decorator .resize-border {
+    -fx-border-color: -fx-decorator-color;
+    -fx-border-width: 0.0 4.0 4.0 4.0;
+}
+
+.jfx-decorator .jfx-decorator-title-container .jfx-decorator-text {
+    -fx-fill: WHITE;
+    -fx-font-size: 16.0;
+}
+
+
+/*******************************************************************************
+*                                                                              *
+* JFX Hamburger Icon                                                           *
+*                                                                              *
+*******************************************************************************/
+
+.jfx-hamburger {
+    -fx-padding: 10.0;
+    -fx-spacing: 4.0px;
+    -fx-cursor: hand;
+}
+
+.jfx-hamburger StackPane {
+    -fx-pref-width: 30.0px;
+    -fx-pref-height: 4.0px;
+    -fx-background-color: #FFF;
+    -fx-background-radius: 5.0px;
+}
+
+/*******************************************************************************
+ *                                                                             *
+ * Scroll Bar			                                                       *
+ *                                                                             *
+ ******************************************************************************/
+
+ .scroll-bar:vertical > .track-background, .scroll-bar:horizontal > .track-background {
+    -fx-background-color: #F1F1F1;
+    -fx-background-insets: 0.0;
+}
+
+.scroll-bar:vertical > .thumb, .scroll-bar:horizontal > .thumb {
+    -fx-background-color: #BCBCBC;
+    -fx-background-insets: 0.0;
+    -fx-background-radius: 1.0;
+}
+
+.scroll-bar:vertical > .increment-button, .scroll-bar:vertical > .decrement-button {
+    -fx-padding: 5.0 2.0 5.0 2.0;
+}
+
+
+.scroll-bar > .increment-button, .scroll-bar > .decrement-button, .scroll-bar:hover > .increment-button, .scroll-bar:hover > .decrement-button {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar > .increment-button > .increment-arrow, .scroll-bar > .decrement-button > .decrement-arrow {
+    -fx-background-color: rgb(150.0, 150.0, 150.0);
+}
+
+.scroll-bar > .increment-button > .increment-arrow {
+    -fx-shape: "M298 426h428l-214 214z";
+}
+
+.scroll-bar > .decrement-button > .decrement-arrow {
+    -fx-shape: "M298 598l214-214 214 214h-428z";
+}
+
+.scroll-bar:horizontal > .increment-button > .increment-arrow {
+    -fx-rotate: 270.0;
+    -fx-pref-height: 5.0;
+    -fx-pref-width: 5.0;
+
+}
+
+.scroll-bar:horizontal > .decrement-button > .decrement-arrow {
+    -fx-rotate: 270.0;
+    -fx-pref-height: 5.0;
+    -fx-pref-width: 5.0;
+}
+
+/*******************************************************************************
+ *                                                                             *
+ * Scroll Pane			                                                       *
+ *                                                                             *
+ ******************************************************************************/
+
+.scroll-pane {
+    -fx-background-insets: 0.0;
+    -fx-padding: 0.0;
+}
+
+.scroll-pane:focused {
+    -fx-background-insets: 0.0;
+}
+
+.scroll-pane .corner {
+    -fx-background-insets: 0.0;
+}
+
+/*Others */
+.tree-table-cell {
+    -fx-alignment: center ;
+}
+
+.jfx-progress-bar > .bar,
+.jfx-progress-bar:indeterminate > .bar{
+    -fx-background-color: #0F9D58;
+    -fx-padding: 1.5;
+}
+
+.jfx-progress-bar > .secondary-bar,
+.jfx-progress-bar:indeterminate > .secondary-bar{
+    -fx-background-color: rgb(188, 228, 146);
+}

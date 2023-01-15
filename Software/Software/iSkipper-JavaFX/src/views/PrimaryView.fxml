@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDrawer?>
+<?import com.jfoenix.controls.JFXHamburger?>
+<?import com.jfoenix.controls.JFXProgressBar?>
+<?import com.jfoenix.controls.JFXRippler?>
+<?import com.jfoenix.controls.JFXToggleNode?>
+<?import com.jfoenix.controls.JFXToolbar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="rootPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="200.0" minWidth="500.0" prefHeight="750.0" prefWidth="1000.0" stylesheets="@../css/application.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <VBox maxWidth="1.7976931348623157E308" prefHeight="50.0" prefWidth="650.0" style="-fx-background-color: #0378bd;" BorderPane.alignment="TOP_RIGHT">
+         <children>
+            <JFXToolbar fx:id="toolbar" prefHeight="51.0" prefWidth="600.0" style="-fx-background-color: #0378bd;" VBox.vgrow="ALWAYS">
+               <left>
+                  <HBox BorderPane.alignment="CENTER">
+                     <children>
+                        <JFXRippler maskType="CIRCLE" position="BACK" prefHeight="43.0" prefWidth="72.0" style="-fx-ripple-color: WHITE;">
+                           <children>
+                              <StackPane prefHeight="43.0" prefWidth="55.0">
+                                 <children>
+                                    <JFXHamburger fx:id="hamburger" focusTraversable="true" prefHeight="194.0" prefWidth="72.0" />
+                                 </children>
+                              </StackPane>
+                           </children>
+                        </JFXRippler>
+                        <Label fx:id="toolbarTitle" prefHeight="173.0" prefWidth="233.0" text="Multiple Choice" textFill="WHITE" textOverrun="CLIP">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+               </left>
+               <right>
+                  <GridPane prefHeight="48.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="94.0" minWidth="10.0" percentWidth="0.0" prefWidth="200.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="94.0" minWidth="10.0" percentWidth="20.0" prefWidth="40.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="136.0" minWidth="10.0" percentWidth="5.0" prefWidth="10.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="136.0" minWidth="10.0" percentWidth="20.0" prefWidth="40.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" percentWidth="5.0" prefWidth="20.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" percentWidth="20.0" prefWidth="40.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="136.0" minWidth="10.0" percentWidth="5.0" prefWidth="10.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="136.0" minWidth="10.0" percentWidth="20.0" prefWidth="40.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints maxHeight="12.0" minHeight="3.0" prefHeight="4.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="41.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="18.0" minHeight="4.0" prefHeight="4.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <JFXToggleNode fx:id="startToggle" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 50; -jfx-toggle-color: #03bda4;" text="Start" textFill="WHITE" textOverrun="CLIP" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <JFXButton fx:id="stopButton" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 50px;" text="Stop" textFill="WHITE" textOverrun="CLIP" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                        <JFXButton fx:id="resetButton" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 50;" text="Reset" textFill="WHITE" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+                        <JFXToggleNode fx:id="rawToggle" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 50; -jfx-toggle-color: #03bda4;" text="Raw" textFill="WHITE" GridPane.columnIndex="7" GridPane.rowIndex="1" />
+                     </children>
+                  </GridPane>
+               </right>
+            </JFXToolbar>
+            <JFXProgressBar fx:id="progressbar" maxWidth="1.7976931348623157E308" prefHeight="6.0" prefWidth="803.0" VBox.vgrow="ALWAYS" />
+         </children>
+      </VBox>
+   </top>
+   <center>
+      <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="438.0" prefWidth="650.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <content>
+                  <AnchorPane fx:id="mainPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" />
+               </content></ScrollPane>
+            <JFXDrawer fx:id="drawer" defaultDrawerSize="250" direction="LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="444.0" prefWidth="250.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>
