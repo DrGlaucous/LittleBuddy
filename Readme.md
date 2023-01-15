@@ -66,17 +66,20 @@ For those who are too lazy to go to that website, here are a few important resou
 I've also included a Frtizing schematic of the wiring:
 
 <figure>
-<img src="https://github.com/DrGlaucous/LittleBuddy/raw/main/Images/LittleBuddy_Graphic.svg" alt="Trulli" style="width:50%"align = "center">
-<img src="https://github.com/DrGlaucous/LittleBuddy/raw/main/Images/LittleBuddy_Schem.svg" alt="Trulli" style="width:50%" align = "right">
-<br><br>
+<img src="https://github.com/DrGlaucous/LittleBuddy/raw/main/Images/LittleBuddy_Graphic.svg" alt="Trulli" style="width:100%"align = "center">
+<br><br><br><br>
+<img src="https://github.com/DrGlaucous/LittleBuddy/raw/main/Images/LittleBuddy_Schem.svg" alt="Trulli" style="width:100%" align = "center">
+<br>
 </figure>
 
+---
 
 The finished product should look something like this:
 <figure>
-<img src="https://github.com/DrGlaucous/LittleBuddy/raw/main/Images/ViewLeft.jpg" alt="Trulli" style="width:50%"align = "left">
-<img src="https://github.com/DrGlaucous/LittleBuddy/raw/main/Images/ViewRight.jpg" alt="Trulli" style="width:50%" align = "right">
-<br><br><br><br><br><br>
+<img src="https://github.com/DrGlaucous/LittleBuddy/raw/main/Images/ViewLeft.jpg" alt="Trulli" style="width:100%"align = "center">
+<br><br><br>
+<img src="https://github.com/DrGlaucous/LittleBuddy/raw/main/Images/ViewRight.jpg" alt="Trulli" style="width:100%" align = "center">
+<br>
 </figure>
 
 ---
