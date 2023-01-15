@@ -2,7 +2,7 @@
 
 ## Little Buddy
 ---
-![image](https://s3-alpha.figma.com/hub/file/948140848/1f4d8ea7-e9d9-48b7-b70c-819482fb10fb-cover.png)
+![image](https://github.com/DrGlaucous/LittleBuddy/raw/main/Images/AyeSkipper.jpg)
 
 ---
 This repo contains the tools needed to construct the LittleBuddy, an STM32 device that can emulate an iClicker by sending and receiving multiple-choice answers built on the [iSkipper](https://github.com/wizard97/iSkipper) reverse-engineering project.
@@ -17,8 +17,10 @@ Due to the hard work of others who felt the same way, it was realized that the i
 * [Academic Report by Daniel Wisner III, Jacob Glueck](https://github.com/wizard97/iSkipper/releases/download/v1.0.0/iskipper.pdf)
 * [Blog Post by Ammar Askar](https://blog.ammaraskar.com/iclicker-reverse-engineering/)
 
-![image](https://s3-alpha.figma.com/hub/file/948140848/1f4d8ea7-e9d9-48b7-b70c-819482fb10fb-cover.png)
-*(LittleBuddy running a "random answer" routine on channel AA, which shifts the radio frequency to 917MHz)*
+<figure>
+<img src="https://github.com/DrGlaucous/LittleBuddy/raw/main/Images/SDRCapture.PNG" alt="Trulli" style="width:100%">
+<figcaption align = "center"><i>LittleBuddy running a "random answer" routine on channel AA, which shifts the radio frequency to 917MHz</i></figcaption>
+</figure>
 
 From the respective iSkipper pages, setting up and running one of these devices should be fairly straightforward, but I ran into some documentation gaps when trying to create it for myself.
 The original repo is now a few years old, and somewhat out of date. I ported the firmware to PlatformIO and set it up to be used with the STM32 BluePill, which was not without several hitches.
@@ -52,19 +54,32 @@ For those who are too lazy to go to that website, here are a few important resou
 |B5	|RESET	|chip reset	        |CPU -> RF chip
 |B4	|DIO0	|interrupt request	|RF chip -> CPU
 |B3	|DIO4	|aux. status	    |RF chip -> CPU
-*Pinout table*
+<figcaption align = "center"><i>Pinout table</i></figcaption>
+<br>
 
-![image](http://ognproject.wdfiles.com/local--resized-images/stm32-ogn-tracker/RF_wiring.png/medium.jpg)
-*Where those pins should go*
+<figure>
+<img src="http://ognproject.wdfiles.com/local--resized-images/stm32-ogn-tracker/RF_wiring.png/medium.jpg" alt="Trulli" style="width:100%">
+<figcaption align = "center"><i>Where those pins should go</i></figcaption>
+</figure>
+<br>
 
 I've also included a Frtizing schematic of the wiring:
-![image](https://s3-alpha.figma.com/hub/file/948140848/1f4d8ea7-e9d9-48b7-b70c-819482fb10fb-cover.png)
+
+<figure>
+<img src="https://github.com/DrGlaucous/LittleBuddy/raw/main/Images/LittleBuddy_Graphic.svg" alt="Trulli" style="width:50%"align = "center">
+<img src="https://github.com/DrGlaucous/LittleBuddy/raw/main/Images/LittleBuddy_Schem.svg" alt="Trulli" style="width:50%" align = "right">
+<br><br>
+</figure>
+
 
 The finished product should look something like this:
-![image](https://s3-alpha.figma.com/hub/file/948140848/1f4d8ea7-e9d9-48b7-b70c-819482fb10fb-cover.png)
-![image](https://s3-alpha.figma.com/hub/file/948140848/1f4d8ea7-e9d9-48b7-b70c-819482fb10fb-cover.png)
+<figure>
+<img src="https://github.com/DrGlaucous/LittleBuddy/raw/main/Images/ViewLeft.jpg" alt="Trulli" style="width:50%"align = "left">
+<img src="https://github.com/DrGlaucous/LittleBuddy/raw/main/Images/ViewRight.jpg" alt="Trulli" style="width:50%" align = "right">
+<br><br><br><br><br><br>
+</figure>
 
-
+---
 As for the antenna, I followed the radio [hookup guide here](https://www.mysensors.org/build/connect_radio). The antenna should be cut to roughly 80mm (leaving extra for soldering in place). *(Note: it is important to use solid-core wire for this step. Braided wire significantly reduces the effectiveness of the antenna)* 
 **You need to include an antenna or else you risk burning out the radio.**
 
@@ -101,4 +116,4 @@ if needed, change the hex value to match that of your device.
 ---
 Happy Quizzing!
 
-![image](https://s3-alpha.figma.com/hub/file/948140848/1f4d8ea7-e9d9-48b7-b70c-819482fb10fb-cover.png)
+![image](https://github.com/DrGlaucous/LittleBuddy/raw/main/Images/Posed.jpg)
