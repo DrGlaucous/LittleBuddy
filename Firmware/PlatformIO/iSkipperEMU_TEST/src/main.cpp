@@ -4,47 +4,58 @@
 #include <Arduino.h>
 
 /* UPDATE THESE FOR YOUR PARTICULAR BOARD */
-#define IS_RFM69HW false //make true if using w version
-#define IRQ_PIN PB4 // This is 3 on adafruit feather (DIO0 on the radio)
-#define CSN PA4 // This is 8 on adafruit feather (no idea what this is or what it does... I think it's the NSS pin?)
+#define IS_RFM69HW true //make true if using w (high-wattage) version
+#define IRQ_PIN PB4 // This is 3 on adafruit feather (DIO0 on the radio, used for callbacks when the radio gets a packet)
+#define CSN PA4 // This is 8 on adafruit feather. I think it's the NSS (slave select) pin? In fact, I'm almost sure of it.
 /* END THINGS YOU MUST UPDATE */
 
 #define MAX_BUFFERED_PACKETS 20
 #define SEND_ACKS true
 
 iClickerEmulator clicker(CSN, IRQ_PIN, digitalPinToInterrupt(IRQ_PIN), IS_RFM69HW);
+RingBufCPP<iClickerPacket, MAX_BUFFERED_PACKETS> recvBuf;
 
+//forward declaration
+void recvPacketHandler(iClickerPacket *recvd);
 
-// This will flood base station with random answers under random ids
-// Use at your own risk...
 
 void setup()
 {
-    Serial.begin(115200);
-    clicker.begin(iClickerChannels::AA); //set channel to AA
+    Serial.begin(9600);
+    clicker.begin(iClickerChannels::AA);
+    // enter promiscouse mode on sending channel
+    clicker.startPromiscuous(CHANNEL_SEND, recvPacketHandler);
+    delay(1000);
+    Serial.println("Started promiscous");
     //clicker.dumpRegisters();
 }
 
 
 void loop()
 {
+  char tmp[50];
+  iClickerPacket r;  
 
-  uint8_t id[4];
-  iClickerEmulator::randomId(id);
-  iClickerAnswer ans = clicker.randomAnswer();
+  //see if there is a pending packet, check if its an answer packet
+  while (recvBuf.pull(&r) && r.type == PACKET_ANSWER) {
+    uint8_t *id = r.packet.answerPacket.id;
+    char answer = iClickerEmulator::answerChar(r.packet.answerPacket.answer);
+    snprintf(tmp, sizeof(tmp), "Captured: %c (%02X, %02X, %02X, %02X) \n", answer, id[0], id[1], id[2], id[3]);
+    Serial.println(tmp);
+  }
 
-
-	pinMode(LED_BUILTIN, OUTPUT);
-	digitalWrite(LED_BUILTIN, LOW);
-
-	//problem: we're hanging on the wait-for-radio-init function.
-	//to troubleshoot, we could: see if the library is too old, see if the pin assignment is wrong, see if we wired the radio incorrectly
-	clicker.submitAnswer( id, ans, false, 100);
-
-
-	digitalWrite(LED_BUILTIN, HIGH);
-  //delay(1000);
+  delay(100);
+}
 
 
+void recvPacketHandler(iClickerPacket *recvd)
+{
+    if (SEND_ACKS && recvd->type == PACKET_ANSWER) {
+      clicker.acknowledgeAnswer(&recvd->packet.answerPacket, true);
+      // restore the frequency back to AA and go back to promiscous mode
+      clicker.setChannel(iClickerChannels::AA);
+      clicker.startPromiscuous(CHANNEL_SEND, recvPacketHandler);
+    }
 
+    recvBuf.add(*recvd);
 }

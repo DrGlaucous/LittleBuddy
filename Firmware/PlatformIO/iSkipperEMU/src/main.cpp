@@ -21,9 +21,9 @@
 /*************************Change These Constants Below To Fit Your Hardware!***************************/
 /**/                                                                                                /**/
 /**/#define IS_RFM69HW true //make true if using w version                                          /**/
-/**/#define IRQ_PIN 3       // Must Be 3 for Arduino Nano                                           /**/
-/**/#define CSN PA4          // NSS pin,10 for Arduino Nano                                          /**/
-/**/constexpr uint32_t FIXED_ISKIPPER_ID = 0xCDCDCDCD;//The Fixed ID for emulating a normal iClikcer/**/
+/**/#define IRQ_PIN PB4       // Callback pin, must Be 3 for Arduino Nano                           /**/
+/**/#define CSN PA4          // NSS pin,10 for Arduino Nano                                         /**/
+/**/constexpr uint32_t FIXED_ISKIPPER_ID = 0xA86639F7;//The Fixed ID for emulating a normal iClikcer/**/
 /**/                                                                                                /**/
 /*************************Change These Constants Above To Fit Your Hardware!***************************/
 
@@ -380,7 +380,10 @@ static inline bool shouldStop()
 //Reset function jump to address 0, this would not fix problem caused by wild pointers.
 static inline void reset()
 {
-	__asm("jmp 0");
+	//STM32 does not like this ASM instruction
+	//__asm("jmp 0");
+	//it uses this instead
+	NVIC_SystemReset();
 }
 
 //Check validation of fixed id

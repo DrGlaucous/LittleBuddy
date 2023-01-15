@@ -100,7 +100,7 @@ public:
     static void randomId(uint8_t *ret);
     //generate random answer
     static iClickerAnswer randomAnswer();
-    //concert answer to char
+    //convert answer to char
     static char answerChar(iClickerAnswer ans);
     // convert char to ans
     static iClickerAnswer charAnswer(char ans);
