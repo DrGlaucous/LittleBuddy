@@ -67,10 +67,10 @@ void setup()
 	while (Serial.read() != OP_COMFIRM_CONNECTION) //Wait until connect
 	{
 		Serial.println(F("Initialization Complete. Waiting for COM command..."));
-		for (uint16_t wait = SERIAL_NO_COMMAND_WAIT_TIME; wait > 0; wait--)
+		for (uint16_t wait = SERIAL_NO_COMMAND_WAIT_TIME; wait > 0; wait--)//wait every 3 seconds to check for serial messages in buffer
 		{
-			if (Serial.available() > 0)
-				break;
+			if (Serial.available() > 0)//there's something ready
+				break;//go back and read it
 			delay(1);
 		}
 	}
@@ -104,7 +104,7 @@ void loop()
 	}
 	case OP_ANSWER:
 	{
-		//Repeat 10 times to make sure it succeed, since we can't decode ACK from the base.
+		//Repeat 10 times to make sure it succeeds, since we can't decode ACK from the base.
 		answer(serialCommand[0], 10);
 		break;
 	}
@@ -128,9 +128,14 @@ void loop()
 		reset();
 		break;
 	}
-	default:
+	case OP_STANDBY://if nothing is sent from the host, this is returned by default
 	{
 		idle();
+		break;
+	}
+	default://anything that is an attempted operation, but is not one of these
+	{
+		Serial.println(RES_INVALID_OPERATION);
 		break;
 	}
 	}
@@ -146,7 +151,7 @@ static inline void idle()
 {
 	Serial.println(RES_STANDBY);
 	Serial.println(F("No Running Progress, waiting for commands..."));
-	for (uint16_t wait = SERIAL_NO_COMMAND_WAIT_TIME; wait > 0; wait--)
+	for (uint16_t wait = SERIAL_NO_COMMAND_WAIT_TIME; wait > 0; wait--)//wait for 3 seconds before checking the serial buffer again
 	{
 		if (Serial.available() > 0)
 			break;
@@ -349,7 +354,7 @@ static inline char processSerialInput(char* const argument, const uint16_t size)
 		}
 		return cOperation;
 	}
-	return OP_INVALID_OPERATION;
+	return OP_STANDBY;
 }
 
 

