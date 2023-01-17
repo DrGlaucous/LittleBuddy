@@ -1,0 +1,42 @@
+layout and proposition:
+
+
+
+have a UI with several tabs:
+connect mode
+collect mode
+basic mode
+advanced mode
+base mode
+terminal mode
+
+none of the tabs will be active unless the connection status is confirmed.
+if connection status is lost, screen snaps back to connect mode.
+
+basic mode will have the same features as the original iClicker:
+menu for ID, menu for channel, buttons for each answer.
+
+
+collect mode will have a graph of all sniffed answers and allow the user to make a table of all the clicker IDs (and export it)
+will also have an option to send answers out as another collected list, option to move sniffed IDs to this table or add custom ones (also import/export)
+
+will have a whitelist option as well, to ignore ID interception of these clickers
+
+list format
+
+0xIDHERE [tab delim] name maybe? [\n]
+
+
+advanced mode will be text and buttons only, to look lest conspicuous (collect on/off accessible here too)
+will have options like random answer with interval selection (whitelist included)
+will have percentages of each answer by sniffed clickers 
+option to automatically answer the most popular answer
+option to deflect all incoming answers to an answer of choice, or automatically send all answers to the least popular one
+
+base mode
+instead of passive gathering
+actively send confimration to clickers that they're connected to a base (will remove the "NO BASE" text)
+option to export answer counts with question numbers (much like a real base station)
+
+terminal mode
+for sending raw commands to the littlebuddy
